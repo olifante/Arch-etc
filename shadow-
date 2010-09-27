@@ -6,3 +6,5 @@ ftp:x:0::::::
 http:x:0::::::
 nobody:x:0::::::
 dbus:!:14879:0:99999:7:::
+tiago:$1$fkNrfBXe$pWe0gcS9Sc2InkuZve7NQ.:14879:0:99999:7:::
+hal:!:14879:0:99999:7:::
