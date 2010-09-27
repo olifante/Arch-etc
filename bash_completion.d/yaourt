@@ -1,0 +1,90 @@
+# vim: set ft=sh ts=2 sw=2 et:
+# file: /etc/bash_completion.d/yaourt
+
+# Bash completion for yaourt
+# Use pacman completion (_pacman())
+#
+# Distributed under the terms of the GNU General Public License, v2 or later.
+#
+
+
+_available_repos ()
+{
+  COMPREPLY=( $( compgen -W "$(\package-query -L)" -- $cur ) )
+}
+
+_installed_pkgs ()
+{
+  local installed_pkgs
+  installed_pkgs=( $( \ls /var/lib/pacman/local/ ) )
+  COMPREPLY=( $( compgen -W "${installed_pkgs[*]%-*-*}" -- $cur ) )
+}
+
+_available_pkgs ()
+{
+  COMPREPLY=( $( compgen -W "$(\pacman -Ssq "^$cur")" -- $cur ) )
+}
+
+_installed_groups ()
+{
+  COMPREPLY=( $( compgen -W "$(\pacman -Qgq | \awk "{print \$1}" | \sort -u)" -- $cur ) )
+}
+
+_available_groups ()
+{
+  COMPREPLY=( $( compgen -W "$(\pacman -Sgq | \sort -u)" -- $cur ) )
+}
+
+## yaourt completion
+
+_yaourt ()
+{
+  _pacman &> /dev/null 
+  local arg op cur
+  cur=${COMP_WORDS[COMP_CWORD]}
+  if [ $COMP_CWORD -eq 1 ] && [[ "$cur" == -* ]]; then
+    COMPREPLY+=( $( compgen -W '\
+      -B --backup \
+      -C \
+      -G --getpkgbuild \
+      ' -- $cur ) )
+    return 0
+  fi  
+  for arg in "${COMP_WORDS[@]}"; do
+    case "${arg:0:2}" in
+      -@(B|C|G|Q|S))
+        op="${arg:1:1}"
+        ;;
+      --)
+        case "${arg:2}" in
+          backup) op="B" ;;
+          getpkgbuild) op="G" ;;
+          sync) op="S" ;;
+          query) op="Q" ;;
+        esac ;;
+    esac
+  done
+  if [[ "$cur" == -* ]]; then
+    case "${op}" in
+      C)
+        COMPREPLY=( $( compgen -W '-c --clean' -- $cur ) )
+        ;;
+      Q)
+        COMPREPLY+=( $( compgen -W '--backupfile --date' -- $cur ) )
+        ;;
+      S)
+        COMPREPLY+=( $( compgen -W '-b --build \
+          --aur --devel --holdver' -- $cur ) )
+        ;; 
+    esac
+  else
+    case "${op}" in
+      B)
+        COMPREPLY=( $( compgen -d -- "$cur" ) \
+                    $( compgen -f -X '!*.tar.bz2' -- "$cur" ) )
+        ;;
+      G) _available_pkgs;
+    esac
+  fi
+}
+complete -o filenames -F _yaourt yaourt 
