@@ -194,12 +194,12 @@
 
 # Portugal
 #Server = ftp://cesium.di.uminho.pt/pub/archlinux/$repo/os/$arch
-#Server = http://cesium.di.uminho.pt/pub/archlinux/$repo/os/$arch
-#Server = http://darkstar.ist.utl.pt/archlinux/$repo/os/$arch
+Server = http://cesium.di.uminho.pt/pub/archlinux/$repo/os/$arch
+Server = http://darkstar.ist.utl.pt/archlinux/$repo/os/$arch
 #Server = ftp://ftp.nux.ipb.pt/pub/dists/archlinux/$repo/os/$arch
-#Server = http://ftp.nux.ipb.pt/pub/dists/archlinux/$repo/os/$arch
+Server = http://ftp.nux.ipb.pt/pub/dists/archlinux/$repo/os/$arch
 #Server = ftp://ftp.rnl.ist.utl.pt/pub/archlinux/$repo/os/$arch
-#Server = http://ftp.rnl.ist.utl.pt/pub/archlinux/$repo/os/$arch
+Server = http://ftp.rnl.ist.utl.pt/pub/archlinux/$repo/os/$arch
 
 # Romania
 #Server = ftp://mirror.archlinux.ro/archlinux/$repo/os/$arch
