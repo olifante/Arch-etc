@@ -3,6 +3,6 @@
 #
 
 #<ip-address>	<hostname.domain.org>	<hostname>
-127.0.0.1		localhost.localdomain	localhost myhost
+127.0.0.1		localhost.localdomain	localhost archibald
 
 # End of file

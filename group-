@@ -21,9 +21,9 @@ games:x:50:tiago
 network:x:90:tiago
 video:x:91:tiago
 audio:x:92:tiago
-optical:x:93:tiago
-floppy:x:94:
-storage:x:95:tiago
+optical:x:93:tiago,hal
+floppy:x:94:hal
+storage:x:95:tiago,hal
 scanner:x:96:
 power:x:98:tiago
 nobody:x:99:

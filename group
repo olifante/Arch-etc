@@ -30,3 +30,4 @@ nobody:x:99:
 users:x:100:
 dbus:x:81:
 hal:x:82:
+avahi:x:84:
